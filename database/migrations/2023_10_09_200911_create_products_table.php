@@ -16,7 +16,6 @@ return new class extends Migration
             $table->string('name')->unique();
             $table->text('description');
             $table->integer('price');
-            $table->boolean('status');
             $table->integer('quantity');
             $table->timestamps();
         });
