@@ -9,8 +9,10 @@ class ProductsModel extends Model
 {
     use HasFactory;
 
+    
+    public int $productId; 
     private string $productName;
-    private string $productId;
+    private string $productDescription;
     private int $price;
     private bool $status;
     private int $quantity;
@@ -22,7 +24,7 @@ class ProductsModel extends Model
 
     public function getId(): string
     {
-        return $this->productId;
+        return $this->productDescription;
     }
 
     public function getPrice(): int
@@ -44,9 +46,9 @@ class ProductsModel extends Model
     {
         $this->productName = $newName;
     }
-    public function setId(string $newId): void
+    public function setId(string $newDescription): void
     {
-        $this->productId = $newId;
+        $this->productDescription = $newDescription;
     }
     public function setPrice(int $newPrice): void
     {
