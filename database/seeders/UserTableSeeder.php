@@ -15,5 +15,11 @@ class UserTableSeeder extends Seeder
     {
         User::truncate();
         User::factory(5)->create();
+        User::factory()->createOne([
+            'name' => 'admin',
+            'email' => 'admin@test.dev',
+            'password' => 'password',
+            'isAdmin' => true,
+        ]);
     }
 }
