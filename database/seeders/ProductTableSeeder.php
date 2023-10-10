@@ -14,6 +14,7 @@ class ProductTableSeeder extends Seeder
      */
     public function run(): void
     {
+        Product::truncate();
         Product::factory(25)->create();
         Product::factory()->createOne([
             'quantity' => 0
