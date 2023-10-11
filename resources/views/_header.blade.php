@@ -1,23 +1,27 @@
-<div x-data="{
-    open: false,
-    toggle() {
-        if (this.open) {
-            return this.close()
+<div 
+    x-data="{
+        open: false,
+        toggle() {
+            if (this.open) {
+                return this.close()
+            }
+
+            this.$refs.button.focus()
+
+            this.open = true
+        },
+        close(focusAfter) {
+            if (!this.open) return
+
+            this.open = false
+
+            focusAfter && focusAfter.focus()
         }
-
-        this.$refs.button.focus()
-
-        this.open = true
-    },
-    close(focusAfter) {
-        if (!this.open) return
-
-        this.open = false
-
-        focusAfter && focusAfter.focus()
-    }
-}" x-on:keydown.escape.prevent.stop="close($refs.button)"
-    x-on:focusin.window="! $refs.panel.contains($event.target) && close()" x-id="['dropdown-button']" class="relative">
+    }" 
+    x-on:keydown.escape.prevent.stop="close($refs.button)"
+    x-on:focusin.window="! $refs.panel.contains($event.target) && close()" x-id="['dropdown-button']" class="relative"
+>
+    
     <div class="bg-gray-500 opacity-80 text-white h-20">
         <nav class=" mx-auto py-4 flex justify-between items-center">
             <form action="/search" method="GET"

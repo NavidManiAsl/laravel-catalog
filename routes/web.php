@@ -16,3 +16,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/home', function () {
     return view('home');
 });
+
+Route::get('/upload', function(){
+    return view('upload');
+});
