@@ -18,7 +18,7 @@
     }
 }" x-on:keydown.escape.prevent.stop="close($refs.button)"
     x-on:focusin.window="! $refs.panel.contains($event.target) && close()" x-id="['dropdown-button']" class="relative">
-    <div class="bg-gray-500 text-white h-20">
+    <div class="bg-gray-500 opacity-80 text-white h-20">
         <nav class=" mx-auto py-4 flex justify-between items-center">
             <form action="/search" method="GET"
                 class="flex items-center space-x-2 flex-grow mx-22 max-w-5xl ml-20 mr-10 min-w-min hidden sm:flex">
@@ -41,13 +41,13 @@
             </button>
         </nav>
     </div>
-    <div x-ref="panel" x-show="open" x-transition.origin.top.left x-on:click.outside="close($refs.button)"
+    <div x-ref="panel" x-show="open" x-transition.origin.top x-on:click.outside="close($refs.button)"
         :id="$id('dropdown-button')" style="display: none;"
-        class="absolute left-0 w-full mt-[-10px]  rounded-md sm:hidden shadow-md">
-        <div class="bg-gray-500 text-white h-50 y">
+        class="absolute left-0 w-full   rounded-md sm:hidden shadow-md">
+        <div class="bg-gray-500 opacity-80 text-white h-50 y">
             <nav class="  py-4  px-4 flex  items-center flex-col">
                 <form action="/search" method="GET"
-                    class="flex items-center justify-between space-x-1 flex-grow w-full mx-10 max-w-5xl   min-w-min ">
+                    class="flex items-center justify-between space-x-1 flex-grow w-full mx-10 max-w-5xl min-w-min ">
                     @csrf
                     <input type="text"
                         class="border p-2 rounded-lg  focus:ring focus:ring-gray-800  text-black font-bold focus:outline-none
