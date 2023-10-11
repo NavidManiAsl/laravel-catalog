@@ -1,7 +1,8 @@
-@extends('layouts/layout')
+@extends('layouts.layout')
 @section('content')
 
     <body>
-        <h1>home</h1>
+       @include('_header')
     </body>
+
 @endsection
