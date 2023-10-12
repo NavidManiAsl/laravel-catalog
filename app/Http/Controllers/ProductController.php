@@ -6,6 +6,7 @@ use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 use App\Http\Requests\StoreProductRequest;
+use PhpParser\Node\Stmt\TryCatch;
 
 class ProductController extends Controller
 {
@@ -32,21 +33,28 @@ class ProductController extends Controller
      */
     public function store(StoreProductRequest $request)
     {
-        $newImageName = time() . '_' . $request->name . '.' . $request->file('image')->extension();
-        
-        $request->file('image')->move(public_path('images'), $newImageName);
+        try {
+            $newImageName = time() . '_' . $request->name . '.' . $request->file('image')->extension();
 
-        $product = Product::create([
-            'name' => $request->input('name'),
-            'price' => $request->input('price'),
-            'quantity' => $request->input('quantity'),
-            'description' => $request->input('description'),
-            'image' => $newImageName
-        ]);
+            $request->file('image')->move(public_path('images'), $newImageName);
 
-        return redirect('/home');
+            $product = Product::create([
+                'name' => $request->input('name'),
+                'price' => $request->input('price'),
+                'quantity' => $request->input('quantity'),
+                'description' => $request->input('description'),
+                'image' => $newImageName
+            ]);
 
-    }
+            return redirect('/home')->with('success', 'Product uploded successfully');
+
+        } catch (\Throwable $th) {
+
+            return redirect()->back()->with('error', 'Failed to upload product. Please try again.');
+        }
+
+
+    } 
 
     /**
      * Display the specified product.
