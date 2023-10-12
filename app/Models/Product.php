@@ -9,7 +9,7 @@ class Product extends Model
 {
     use HasFactory;
 
-    
+    protected $guarded = [];
     public int $productId; 
     private string $productName;
     private string $productDescription;

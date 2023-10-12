@@ -24,7 +24,7 @@ class ProductController extends Controller
      */
     public function create()
     {
-       return view('products.create');
+        return view('products.create');
     }
 
     /**
@@ -32,7 +32,20 @@ class ProductController extends Controller
      */
     public function store(StoreProductRequest $request)
     {
-      
+        $newImageName = time() . '_' . $request->name . '.' . $request->file('image')->extension();
+        
+        $request->file('image')->move(public_path('images'), $newImageName);
+
+        $product = Product::create([
+            'name' => $request->input('name'),
+            'price' => $request->input('price'),
+            'quantity' => $request->input('quantity'),
+            'description' => $request->input('description'),
+            'image' => $newImageName
+        ]);
+
+        return redirect('/home');
+
     }
 
     /**
