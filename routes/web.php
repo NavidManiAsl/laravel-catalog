@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Http\Request;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,10 +15,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/home', function () {
-    return view('home');
-});
+Route::get('/home',[ProductController::class, 'index']);
 
-Route::get('/upload', function(){
-    return view('upload');
-});
+Route::get('/upload', [ProductController::class, 'create']);
+
+Route::post('/upload', [ProductController::class, 'store']);
