@@ -2,7 +2,7 @@
 @section('content')
 
     <body>
-       @include('_header')
+       @include('components._header')
        
     </body>
 
