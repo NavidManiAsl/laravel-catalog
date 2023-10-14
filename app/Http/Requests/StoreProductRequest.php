@@ -22,11 +22,18 @@ class StoreProductRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => ['required', 'min:3', 'max:256'],
+            'name' => ['required', 'min:3', 'max:256', 'regex:/^[a-zA-Z0-9_]+$/'],
             'price' => ['required'],
             'quantity' => ['required'],
             'description' => ['max:1024'],
             'image' => ['required','mimes:jpg,jpeg','max:5048'],
+        ];
+    }
+
+    public function messages():array
+    {
+        return [
+            'name.regex' => 'Only alphanemeric and _ allowed'
         ];
     }
 }
