@@ -14,25 +14,28 @@ class ProductController extends Controller
 {
     /**
      * Display a listing of the products.
+     * Todo: Create error view
      */
     public function index()
     {
-        try{ return view(
-            'products.index',
-            [
-                'products' => Product::all()
-            ]);
-        } catch(\Illuminate\Database\QueryException $e) {
-            Log::error('Database error: '. $e->getMessage());
-            
-            return redirect('/error')->with('error' => 'Database Error, Try again later!');
+        try {
+            return view(
+                'products.index',
+                [
+                    'products' => Product::all()
+                ]
+            );
+        } catch (\Illuminate\Database\QueryException $e) {
+            Log::error('Database error: ' . $e->getMessage());
+
+            return redirect('/error')->with('error', 'Database Error, Try again later!');
         }
-       
+
     }
 
     /**
      * Show the form for creating a new product.
-     * @return View
+     * 
      */
     public function create()
     {
@@ -60,7 +63,7 @@ class ProductController extends Controller
             return redirect('/home')->with('success', 'Product uploded successfully');
 
         } catch (\Throwable $th) {
-            Log::error('upload Error: '. $th->getMessage());
+            Log::error('upload Error: ' . $th->getMessage());
             return redirect()->back()->with('error', 'Failed to upload product. Please try again.');
         }
 
@@ -84,13 +87,13 @@ class ProductController extends Controller
                     'product' => $product
                 ]
             );
-        } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e){
-            Log::error($e->getMessage(),[$e->getCode()]);
+        } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
+            Log::error($e->getMessage(), [$e->getCode()]);
             return abort(404);
         }
 
 
-       
+
     }
 
     /**
