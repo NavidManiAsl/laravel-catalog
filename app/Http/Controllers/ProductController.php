@@ -14,17 +14,20 @@ class ProductController extends Controller
 {
     /**
      * Display a listing of the products.
-     * @return View
      */
     public function index()
     {
-
-        return view(
+        try{ return view(
             'products.index',
             [
                 'products' => Product::all()
-            ]
-        );
+            ]);
+        } catch(\Illuminate\Database\QueryException $e) {
+            Log::error('Database error: '. $e->getMessage());
+            
+            return redirect('/error')->with('error' => 'Database Error, Try again later!');
+        }
+       
     }
 
     /**
