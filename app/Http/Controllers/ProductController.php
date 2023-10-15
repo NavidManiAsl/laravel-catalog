@@ -39,7 +39,12 @@ class ProductController extends Controller
      */
     public function create()
     {
-        return view('products.create');
+        try {
+            return view('products.create');
+        } catch (\Exception $e) {
+            Log::error('Unexpected error: ' . $e->getMessage());
+            return redirect()->back()->with('error', 'Unexpected error, Try again later!');
+        }
     }
 
     /**
@@ -64,7 +69,7 @@ class ProductController extends Controller
 
         } catch (\Throwable $th) {
             Log::error('upload Error: ' . $th->getMessage());
-            return redirect()->back()->with('error', 'Failed to upload product. Please try again.');
+            return redirect()->back()->with('error', 'Failed to upload product. Try again later');
         }
 
 
