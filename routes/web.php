@@ -15,8 +15,10 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::get('/home',[ProductController::class, 'index']);
+Route::get('/',[ProductController::class, 'index']);
 
 Route::get('/upload', [ProductController::class, 'create']);
 
 Route::post('/upload', [ProductController::class, 'store']);
+
+Route::get('/{id}', [ProductController::class, 'show']);

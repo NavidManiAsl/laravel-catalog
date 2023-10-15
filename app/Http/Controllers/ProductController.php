@@ -6,6 +6,8 @@ use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 use App\Http\Requests\StoreProductRequest;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Validation\Rules\Exists;
 use PhpParser\Node\Stmt\TryCatch;
 
 class ProductController extends Controller
@@ -64,10 +66,28 @@ class ProductController extends Controller
 
     /**
      * Display the specified product.
+     *
+     * @param int $id 
+     * 
+     * @return mixed
      */
-    public function show(Product $product)
+    public function show($id)
     {
-        //
+        try {
+            $product = Product::findOrFail($id);
+            return view('
+            products.show',
+                [
+                    'product' => $product
+                ]
+            );
+        } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e){
+            Log::error($e->getMessage(),[$e->getCode()]);
+            return abort(404);
+        }
+
+
+       
     }
 
     /**
@@ -75,7 +95,7 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        //
+
     }
 
     /**
