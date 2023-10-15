@@ -57,7 +57,7 @@ class ProductController extends Controller
             return redirect('/home')->with('success', 'Product uploded successfully');
 
         } catch (\Throwable $th) {
-
+            Log::error('upload Error: '. $th->getMessage());
             return redirect()->back()->with('error', 'Failed to upload product. Please try again.');
         }
 
