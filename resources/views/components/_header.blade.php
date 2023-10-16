@@ -22,7 +22,7 @@
     x-on:focusin.window="! $refs.panel.contains($event.target) && close()" x-id="['dropdown-button']" class="relative"
 >
     
-    <div class="bg-gray-500 opacity-80 text-white h-20">
+    <div class="bg-gray-500 opacity-80 text-white h-20 fixed top-0 w-full" >
         <nav class=" mx-auto py-4 flex justify-between items-center">
             <form action="/products/search" method="GET"
                 class="flex items-center space-x-2 flex-grow mx-22 max-w-5xl ml-20 mr-10 min-w-min hidden sm:flex">
