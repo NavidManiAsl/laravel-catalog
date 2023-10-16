@@ -2,7 +2,7 @@
 
 <body class="bg-gray-600 p-10">
 
-    <form action="/upload" method="post" enctype="multipart/form-data"
+    <form action="/products/upload" method="post" enctype="multipart/form-data"
         class="flex flex-col items-center  mx-auto max-w-5xl p-5  shadow-[rgba(0,_0,_0,_0.24)_0px_3px_8px]">
         @csrf
         <input type="text" name="name" placeholder="Name" value="{{old('name')}}"

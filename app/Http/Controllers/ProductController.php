@@ -39,7 +39,11 @@ class ProductController extends Controller
      */
     public function create()
     {
-        return view('products.create');
+        try {
+            return view('products.create');
+        } catch (\Throwable $th) {
+            Log::error('Unexpected error: '. $th->getMessage());
+        }
     }
 
     /**
@@ -60,7 +64,7 @@ class ProductController extends Controller
                 'image' => $newImageName
             ]);
 
-            return redirect('/home')->with('success', 'Product uploded successfully');
+            return redirect('/products')->with('success', 'Product uploded successfully');
 
         } catch (\Throwable $th) {
             Log::error('upload Error: ' . $th->getMessage());
@@ -73,11 +77,11 @@ class ProductController extends Controller
     /**
      * Display the specified product.
      *
-     * @param int $id 
+     * 
      * 
      * @return mixed
      */
-    public function show($id)
+    public function show(string $id)
     {
         try {
             $product = Product::findOrFail($id);
@@ -119,4 +123,14 @@ class ProductController extends Controller
     {
         //
     }
+
+    /**
+     * 
+     */
+    public function search (\Illuminate\Http\Request $request)
+    {
+        dd($request->all());
+    }
+
+     
 }

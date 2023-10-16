@@ -15,10 +15,12 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::get('/',[ProductController::class, 'index']);
+Route::get('/products',[ProductController::class, 'index']);
 
-Route::get('/upload', [ProductController::class, 'create']);
+Route::get('products/upload', [ProductController::class, 'create']);
 
-Route::post('/upload', [ProductController::class, 'store']);
+Route::post('products/upload', [ProductController::class, 'store']);
 
-Route::get('/{id}', [ProductController::class, 'show']);
+Route::get('products/search', [ProductController::class, 'search']);
+
+Route::get('products/{id}', [ProductController::class, 'show']);

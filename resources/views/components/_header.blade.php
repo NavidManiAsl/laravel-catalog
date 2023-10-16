@@ -24,7 +24,7 @@
     
     <div class="bg-gray-500 opacity-80 text-white h-20">
         <nav class=" mx-auto py-4 flex justify-between items-center">
-            <form action="/search" method="GET"
+            <form action="/products/search" method="GET"
                 class="flex items-center space-x-2 flex-grow mx-22 max-w-5xl ml-20 mr-10 min-w-min hidden sm:flex">
                 @csrf
                 <input type="text"
@@ -35,7 +35,7 @@
                     <img src="{{ asset('icons/magnifying_glass.svg') }}" alt="Magnifying Glass Icon" class="w-6 h-6">
                 </button>
             </form>
-            <a href="/upload"
+            <a href="/products/upload"
                 class="hover:text-gray-800 transition duration-300 ease-in-out ml-auto hidden sm:flex font-bold text-xl">Upload</a>
             <a href="/login"
                 class="hover:text-gray-800 transition duration-300 ease-in-out ml-5 mr-10 hidden sm:flex font-bold text-xl">Login</a>
@@ -50,7 +50,7 @@
         class="absolute left-0 w-full   rounded-md sm:hidden shadow-md">
         <div class="bg-gray-500 opacity-80 text-white h-50 y">
             <nav class="  py-4  px-4 flex  items-center flex-col">
-                <form action="/search" method="GET"
+                <form action="/products/search" method="GET"
                     class="flex items-center justify-between space-x-1 flex-grow w-full mx-10 max-w-5xl min-w-min ">
                     @csrf
                     <input type="text"
@@ -62,7 +62,7 @@
                             class="w-6 h-6">
                     </button>
                 </form>
-                <a href="/upload"
+                <a href="/products/upload"
                     class="hover:text-gray-800 transition duration-300 ease-in-out  mt-5 sm:flex font-bold text-xl">Upload</a>
                 <a href="/login"
                     class="hover:text-gray-800 transition duration-300 ease-in-out mt-5 sm:flex font-bold text-xl">Login</a>
