@@ -10,6 +10,8 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\Validation\Rules\Exists;
 use PhpParser\Node\Stmt\TryCatch;
 
+use function PHPUnit\Framework\isNull;
+
 class ProductController extends Controller
 {
     /**
@@ -42,7 +44,7 @@ class ProductController extends Controller
         try {
             return view('products.create');
         } catch (\Throwable $th) {
-            Log::error('Unexpected error: '. $th->getMessage());
+            Log::error('Unexpected error: ' . $th->getMessage());
         }
     }
 
@@ -127,10 +129,26 @@ class ProductController extends Controller
     /**
      * 
      */
-    public function search (\Illuminate\Http\Request $request)
+    public function search(Request $request)
     {
-        dd($request->all());
+        try {
+            $name = $request->input('searchQuery');
+            $products = Product::where('name', 'like', '%' . $name . '%')->get();
+            
+            if ($products->isEmpty()) {
+                return view('products.index',['products'=>[]])->with('notFound', 'Youre search gives no result!');
+            }
+
+            return view('.products.index', ['products' => $products->all()]);
+
+        } catch (\Throwable $th) {
+            
+            Log::error('Unexpected Error: ' . $th->getMessage(), [$th->getTrace()]);
+            redirect()->back()->with('error', 'Unexpected error try again later');
+        }
+
+
     }
 
-     
+
 }
