@@ -34,10 +34,19 @@
                     <img src="{{ asset('icons/magnifying_glass.svg') }}" alt="Magnifying Glass Icon" class="w-6 h-6">
                 </button>
             </form>
+            @auth
             <a href="/products/upload"
-                class="hover:text-gray-800 transition duration-300 ease-in-out ml-auto hidden sm:flex font-bold text-xl">Upload</a>
+            class="hover:text-gray-800 transition duration-300 ease-in-out ml-auto hidden sm:flex font-bold text-xl">Upload</a>
+            @endauth
+            @guest
             <a href="/login"
                 class="hover:text-gray-800 transition duration-300 ease-in-out ml-5 mr-10 hidden sm:flex font-bold text-xl">Login</a>
+            @endguest
+            @auth
+            <a href="/logout"
+            class="hover:text-gray-800 transition duration-300 ease-in-out ml-5 mr-10 hidden sm:flex font-bold text-xl">Logout</a>   
+            @endauth
+            
             <button x-ref="button" x-on:click="toggle()" :aria-expanded="open" :aria-controls="$id('dropdown-button')"
                 type="button" class="">
                 <img src="{{ asset('icons/burger-menu.svg') }}" alt="menu button" class="w-14 h-14  sm:hidden mx-5 ">
@@ -62,10 +71,21 @@
                             class="w-6 h-6">
                     </button>
                 </form>
+                @auth
+                    
                 <a href="/products/upload"
                     class="hover:text-gray-800 transition duration-300 ease-in-out  mt-5 sm:flex font-bold text-xl">Upload</a>
+                @endauth
+                @guest
+                    
                 <a href="/login"
                     class="hover:text-gray-800 transition duration-300 ease-in-out mt-5 sm:flex font-bold text-xl">Login</a>
+                @endguest
+                @auth
+                    
+                <a href="/logout"
+                    class="hover:text-gray-800 transition duration-300 ease-in-out mt-5 sm:flex font-bold text-xl">Logout</a>
+                @endauth
             </nav>
         </div>
     </div>
