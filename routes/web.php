@@ -28,6 +28,9 @@ Route::group(['prefix' => 'products'], function () {
 });
 
 Route::get('/login', [AuthController::class,'index']);
+Route::post('/login',[AuthController::class, 'login']);
+
+Route::get('/logout', [AuthController::class, 'logout']);
 
 Route::get('/signup',[UserController::class,'create']);
 Route::post('/signup', [UserController::class, 'store']);
