@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreUserRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class UserController extends Controller
 {
@@ -25,12 +26,11 @@ class UserController extends Controller
     public function store (StoreUserRequest $request)
     {
         try {
-            $hashedPassword = bcrypt($request->input('password'));
+           
             User::create([
                 'name'=> $request->input('username'),
                 'email' => $request->input('email'),
-                'password' => $hashedPassword,
-                'isAdmin' => false
+                'password' => $request->input('password'),
             ]);
             return redirect('/login')->with('success','you are successfully signed in!');
         } catch (\Throwable $th) {
