@@ -54,7 +54,8 @@
                     @csrf
                     <input type="text"
                         class="border p-2 rounded-lg  focus:ring focus:ring-gray-800  text-black font-bold focus:outline-none
-                              flex-grow ">
+                              flex-grow "
+                              name="searchQuery">
                     <button type="submit"
                         class="bg-white  font-bold py-2 px-4  rounded-lg flex-shrink-0 hover:bg-gray-400 transition mx-10 duration-300">
                         <img src="{{ asset('icons/magnifying_glass.svg') }}" alt="Magnifying Glass Icon"

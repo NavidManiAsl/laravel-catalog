@@ -4,13 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use Illuminate\Http\Request;
-use Illuminate\View\View;
 use App\Http\Requests\StoreProductRequest;
 use Illuminate\Support\Facades\Log;
-use Illuminate\Validation\Rules\Exists;
-use PhpParser\Node\Stmt\TryCatch;
 
-use function PHPUnit\Framework\isNull;
 
 class ProductController extends Controller
 {
