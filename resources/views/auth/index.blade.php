@@ -16,5 +16,19 @@
                 <a href="/signup"
                 class="bg-white hover:bg-slate-400 px-4 py-2 rounded p-4 m-4 font-bold text-black">Signup</a>
         </div>
+        @if ($errors->any())
+
+        <div class="flex items-start  justify-start w-full ">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>
+                        <span class="text-red-950 text-lg font-bold">
+                            {{ $error }}
+                        </span>
+                    </li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
     </form>
 </body>

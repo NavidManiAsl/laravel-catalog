@@ -25,7 +25,7 @@ class StoreUserRequest extends FormRequest
         return [
             'username' => ['required', 'min:3', 'max:256', 'regex:/^[a-zA-Z0-9_]+$/'],
             'email' => ['required', 'email:rfc'],
-            'password' => ['required', 'confirmed']
+            'password' => ['required', 'confirmed','regex:/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-]).{8,}$/']
         ];
     }
 
@@ -33,7 +33,7 @@ class StoreUserRequest extends FormRequest
     {
         return [
             'name.regex' => 'Only alphanemeric and _ allowed',
-            'password.regex' => '8char, symbol, both upper and lower cases'
+            'password.regex' => 'must include 8chars, symbol, both upper and lower cases'
         ];
     }
 }
