@@ -11,7 +11,7 @@ class StoreUserRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -25,6 +25,14 @@ class StoreUserRequest extends FormRequest
             'name' => ['required', 'min:3', 'max:256', 'regex:/^[a-zA-Z0-9_]+$/'],
             'email' => ['required', 'email:rfc'],
             'password' => ['required', 'regex:/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-]).{8,}$/', 'confirmed']
+        ];
+    }
+
+    public function messages():array
+    {
+        return [
+            'name.regex' => 'Only alphanemeric and _ allowed',
+            'password.regex' => '8char, symbol, both upper and lower cases'
         ];
     }
 }
