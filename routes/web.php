@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 
@@ -27,3 +28,6 @@ Route::group(['prefix' => 'products'], function () {
 });
 
 Route::get('/login', [AuthController::class,'index']);
+
+Route::get('/signup',[UserController::class,'create']);
+Route::post('/signup', [UserController::class, 'store']);
