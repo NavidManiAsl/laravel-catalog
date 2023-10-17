@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
@@ -15,12 +16,14 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::get('/products',[ProductController::class, 'index']);
+Route::group(['prefix' => 'products'], function () {
+    
+    Route::get('/', [ProductController::class, 'index']);
+    Route::get('/upload', [ProductController::class, 'create']);
+    Route::post('/upload', [ProductController::class, 'store']);
+    Route::get('/search', [ProductController::class, 'search']);
+    Route::get('/{id}', [ProductController::class, 'show']);
 
-Route::get('/products/upload', [ProductController::class, 'create']);
+});
 
-Route::post('/products/upload', [ProductController::class, 'store']);
-
-Route::get('/products/search', [ProductController::class, 'search']);
-
-Route::get('/products/{id}', [ProductController::class, 'show']);
+Route::get('/login', [AuthController::class,'index']);
