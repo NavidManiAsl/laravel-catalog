@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\LoginRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 
@@ -19,5 +20,10 @@ class AuthController extends Controller
            
             Log::error('unexpected error: '. $th->getMessage(),[$th->getTrace()]);
         }
+    }
+
+    public function login(LoginRequest $request) 
+    {
+        dd($request);
     }
 }
