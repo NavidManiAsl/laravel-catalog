@@ -21,10 +21,11 @@ class StoreUserRequest extends FormRequest
      */
     public function rules(): array
     {
+        
         return [
-            'name' => ['required', 'min:3', 'max:256', 'regex:/^[a-zA-Z0-9_]+$/'],
+            'username' => ['required', 'min:3', 'max:256', 'regex:/^[a-zA-Z0-9_]+$/'],
             'email' => ['required', 'email:rfc'],
-            'password' => ['required', 'regex:/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-]).{8,}$/', 'confirmed']
+            'password' => ['required', 'confirmed']
         ];
     }
 
