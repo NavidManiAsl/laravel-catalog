@@ -19,7 +19,7 @@
 }" x-on:keydown.escape.prevent.stop="close($refs.button)"
     x-on:focusin.window="! $refs.panel.contains($event.target) && close()" x-id="['dropdown-button']" class="relative">
 
-    <div class="bg-gray-500 opacity-80 text-white h-20 fixed top-0 w-full z-40 sm:block ">
+    <div class="bg-gray-500 opacity-80 text-white h-20 fixed top-0 w-full z-40 sm:block mb-10">
         <nav class=" mx-auto py-4 flex justify-between items-center">
             <a href="/products"><img src="{{asset('icons/home_icon.svg')}}" alt="home icon" class="ml-10 w-12"></a>
             <form action="/products/search" method="GET"
@@ -34,19 +34,20 @@
                     <img src="{{ asset('icons/magnifying_glass.svg') }}" alt="Magnifying Glass Icon" class="w-6 h-6">
                 </button>
             </form>
+           <div class="flex">
             @auth
             <a href="/products/upload"
             class="hover:text-gray-800 transition duration-300 ease-in-out ml-auto hidden sm:flex font-bold text-xl">Upload</a>
             @endauth
             @guest
             <a href="/login"
-                class="hover:text-gray-800 transition duration-300 ease-in-out ml-5 mr-10 hidden sm:flex font-bold text-xl">Login</a>
+                class="hover:text-gray-800 transition duration-300 ease-in-out ml-5 mr-10  hidden sm:flex font-bold text-xl">Login</a>
             @endguest
             @auth
             <a href="/logout"
             class="hover:text-gray-800 transition duration-300 ease-in-out ml-5 mr-10 hidden sm:flex font-bold text-xl">Logout</a>   
             @endauth
-            
+        </div>
             <button x-ref="button" x-on:click="toggle()" :aria-expanded="open" :aria-controls="$id('dropdown-button')"
                 type="button" class="">
                 <img src="{{ asset('icons/burger-menu.svg') }}" alt="menu button" class="w-14 h-14  sm:hidden mx-5 ">
