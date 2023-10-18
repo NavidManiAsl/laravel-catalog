@@ -38,7 +38,7 @@ class AuthController extends Controller
         $credentials = $request->only('username', 'password');
         try {
             if ($this->auth->attempt($credentials)) {
-
+                session(['username' => $credentials['username']]);
                 return redirect('/products');
 
             } else {

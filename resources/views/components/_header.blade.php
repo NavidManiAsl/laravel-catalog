@@ -48,6 +48,9 @@
             class="hover:text-gray-800 transition duration-300 ease-in-out ml-5 mr-10 hidden sm:flex font-bold text-xl">Logout</a>   
             @endauth
         </div>
+        @auth
+        <h4>Hello {{session('username')}}!</h4>
+        @endauth
             <button x-ref="button" x-on:click="toggle()" :aria-expanded="open" :aria-controls="$id('dropdown-button')"
                 type="button" class="">
                 <img src="{{ asset('icons/burger-menu.svg') }}" alt="menu button" class="w-14 h-14  sm:hidden mx-5 ">
